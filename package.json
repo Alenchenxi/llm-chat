@@ -27,6 +27,7 @@
     "@coze/api": "^1.0.7",
     "@gaothing/indexdb-util": "^2.0.8",
     "@modern-js/runtime": "2.60.6",
+    "antd": "^5.22.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
