@@ -3,11 +3,10 @@ import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 
-
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  {files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"]},
-  {languageOptions: { globals: globals.browser }},
+  { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
+  { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
@@ -21,15 +20,7 @@ export default [
       "new-cap": ["error", { newIsCap: true, capIsNew: false }], // 构造函数首字母必须大写
       eqeqeq: [2, "always", { null: "ignore" }], // 强制使用全等 (===) 运算符
       "no-loop-func": 2, // 禁止在循环中定义函数
-      "max-lines-per-function": [
-        1,
-        {
-          max: 80, // 函数最大行数为 80 行
-          skipComments: true, // 跳过注释行
-          skipBlankLines: true, // 跳过空行
-          IIFEs: true, // 对立即调用的函数表达式 (IIFE) 应用规则
-        },
-      ],
+      "max-lines": [2, 500], // 限制文件最大行数为 500
       "max-params": [1, 6], // 函数参数最大数量为 6
       "no-eval": 2, // 禁止使用 eval
       "prefer-const": 2, // 必须使用 const 声明不变的变量
@@ -42,5 +33,5 @@ export default [
       "template-curly-spacing": [2, "never"], // 模板字符串中的花括号内不允许有空格
       "no-duplicate-imports": 2, // 禁止重复导入
     },
-  }
+  },
 ];
