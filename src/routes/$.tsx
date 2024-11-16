@@ -1,6 +1,6 @@
 import { Button, Result } from "antd";
 import React from "react";
-import { useNavigate } from "@modern-js/runtime/dist/types/router";
+import { useNavigate } from "@modern-js/runtime/router";
 
 function Page404() {
   const navigate = useNavigate();
