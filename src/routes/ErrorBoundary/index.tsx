@@ -1,10 +1,11 @@
-import { Empty } from "antd";
+import { Result } from "antd";
 import React, { ReactNode } from "react";
-import styles from "./index.less";
+import styles from "./index.module.less";
 
-export default class ErrorBoundary extends React.Component {
+export default class Index extends React.Component {
   state: Readonly<{
     hasError: boolean;
+    error?: Error;
   }> = {
     hasError: false,
   };
@@ -29,6 +30,7 @@ export default class ErrorBoundary extends React.Component {
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
     console.error("error", error, errorInfo);
+    this.setState({ error });
   }
 
   constructor(props: never) {
@@ -40,16 +42,17 @@ export default class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       return (
         (this.props.errorEle as ReactNode) || (
-          <div
+          <Result
             className={[
-              styles["error-info-container"],
+              styles["errorInfoContainer"],
               this.props.className,
             ].join(" ")}
+            status={"500"}
+            title={this.props.message}
+            subTitle={this.state.error?.message}
           >
-            <Empty style={this.props.style} description={this.props.message}>
-              {this.props.render && this.props.render}
-            </Empty>
-          </div>
+            {this.props.render && this.props.render}
+          </Result>
         )
       );
     }
